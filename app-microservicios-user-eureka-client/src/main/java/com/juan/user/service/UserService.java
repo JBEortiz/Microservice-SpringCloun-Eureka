@@ -1,20 +1,14 @@
 package com.juan.user.service;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import com.juan.generic.service.GenericService;
 import com.juan.user.entity.User;
 
 
-
-public interface UserService  {
+@Service
+public interface UserService extends GenericService<User> {
 	
-	List<User> getAll();
-	
-	void create(User user);
-	
-	User findId(Long id);
-	 
-	void delete(Long id);
 	
 	
 	

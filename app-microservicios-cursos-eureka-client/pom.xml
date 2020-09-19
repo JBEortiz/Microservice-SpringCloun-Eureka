@@ -8,10 +8,10 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.juan.user</groupId>
-	<artifactId>app-microservicios-user</artifactId>
+	<groupId>com.juan.cursos</groupId>
+	<artifactId>app-microservicios-cursos-eureka-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>app-microservicios-user</name>
+	<name>app-microservicios-cursos-eureka-client</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -26,12 +26,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	
 	</dependency>
-	<dependency>
-		<groupId>com.juan.user</groupId>
+		<dependency>
+	<groupId>com.juan.user</groupId>
 	<artifactId>app-microservicios-generic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	<dependency>
+		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.5</version>
