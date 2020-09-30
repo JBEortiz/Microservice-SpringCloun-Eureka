@@ -21,19 +21,20 @@ public class Cuestion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String text;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="exam_id")
+	@JoinColumn(name = "exam_id")
 	private Exam exam;
-	
-	public Cuestion(Long id, String text) {
+
+	public Cuestion() {
+
+	}
+
+	public Cuestion(Long id, String text, Exam exam) {
 		super();
 		this.id = id;
 		this.text = text;
-	}
-
-	public Cuestion() {
-		super();
+		this.exam = exam;
 	}
 
 	public Long getId() {
@@ -50,6 +51,14 @@ public class Cuestion implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 
 }
