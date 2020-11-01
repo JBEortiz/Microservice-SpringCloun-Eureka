@@ -3,6 +3,7 @@ package com.juan.generic.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,6 @@ public class GenericController<E, S extends GenericService<E>> {
 	public ResponseEntity<?> findAllUsersDTO() {
 
 		List<E> entity = new ArrayList<>();
-
 		try {
 			entity = service.getAll();
 		} catch (DataAccessException e) {
@@ -35,7 +35,6 @@ public class GenericController<E, S extends GenericService<E>> {
 		if (entity.isEmpty()) {
 			return ResponseEntity.ok("No existen registros");
 		}
-
 		return ResponseEntity.ok(entity);
 	}
 

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,6 +28,7 @@ public class Exam implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotEmpty
 	private String name;
 	// cualquier pregunta que no este asociada a un examen lo va a eliminar con
 	// orphan ya que dara null y no estara asociada a ningun examen
@@ -41,6 +43,7 @@ public class Exam implements Serializable {
 		this.name = name;
 	}
 
+	
 	public Exam() {
 		this.cuestionList = new ArrayList<Cuestion>();
 	}
@@ -86,6 +89,7 @@ public class Exam implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cuestionList == null) ? 0 : cuestionList.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -100,6 +104,11 @@ public class Exam implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Exam other = (Exam) obj;
+		if (cuestionList == null) {
+			if (other.cuestionList != null)
+				return false;
+		} else if (!cuestionList.equals(other.cuestionList))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -112,6 +121,25 @@ public class Exam implements Serializable {
 			return false;
 		return true;
 	}
+		
+//	// MEJORAR
+//	public void setCuestionList(List<Cuestion> cuestionList) {
+//		this.cuestionList.clear();
+//	    cuestionList.forEach(c-> this.addCuestion(c));
+//	}
+//
+//
+//	public void addCuestion(Cuestion cuestion) {
+//		this.cuestionList.add(cuestion);
+//		cuestion.setExam(this);
+//	}
+//
+//	public void removeCuestion(Cuestion cuestion) {
+//		this.cuestionList.remove(cuestion);
+//		cuestion.setExam(null);
+//	}
+
+	
 	
 
 }

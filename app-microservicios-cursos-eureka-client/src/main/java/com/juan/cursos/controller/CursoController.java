@@ -17,7 +17,10 @@ import com.juan.user.entity.User;
 @RestController
 public class CursoController extends GenericController<Curso, CursoService> {
 
-	
+	//MEJORAR ARREGLAR
+	//MEJORAR ARREGLAR
+	//MEJORAR ARREGLAR
+	//MEJORAR ARREGLAR
 	
 	@PutMapping("/{id}/users")
 	public ResponseEntity<?> assignUser(@RequestBody List<User> users, @PathVariable Long id) {
@@ -33,7 +36,7 @@ public class CursoController extends GenericController<Curso, CursoService> {
 		}
 		Curso cursoList = curso;
 		users.forEach(user -> {
-			cursoList.addUsers(user);
+			service.addUsers(user, cursoList);
 		});
 		service.create(cursoList);
 		return ResponseEntity.ok(cursoList);
@@ -52,7 +55,8 @@ public class CursoController extends GenericController<Curso, CursoService> {
 
 		}
 		Curso cursoList = curso;
-		cursoList.removeUsers(user);
+		service.removeUsers(user, cursoList);
+		
 
 		return ResponseEntity.ok("Se ha eliminado correctamente");
 	}
@@ -72,7 +76,7 @@ public class CursoController extends GenericController<Curso, CursoService> {
 		}
 		Curso cursoList = curso;
 		exams.forEach(exam -> {
-			cursoList.addExams(exam);
+			service.addExams(exam, cursoList);
 		});
 		service.create(cursoList);
 		return ResponseEntity.ok(cursoList);
@@ -91,8 +95,7 @@ public class CursoController extends GenericController<Curso, CursoService> {
 
 		}
 		Curso cursoList = curso;
-		cursoList.removeExams(exam);
-
+		service.removeExams(exam, cursoList);
 		return ResponseEntity.ok("Se ha eliminado correctamente");
 	}
 }

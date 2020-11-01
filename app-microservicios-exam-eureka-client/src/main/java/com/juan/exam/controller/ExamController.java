@@ -20,6 +20,7 @@ import com.juan.generic.controller.GenericController;
 @RestController
 public class ExamController extends GenericController<Exam, ExamService> {
 
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> put(@RequestBody Exam exam, @PathVariable Long id) {
 
@@ -32,7 +33,7 @@ public class ExamController extends GenericController<Exam, ExamService> {
 
 		}
 		if (examId == null) {
-			 ResponseEntity.ok("No existen registros de examenes");
+			return ResponseEntity.ok("No existen registros");
 		}
 		examId.setName(exam.getName());
 		List<Cuestion> listCuestion = new ArrayList<Cuestion>();
@@ -41,11 +42,40 @@ public class ExamController extends GenericController<Exam, ExamService> {
 				listCuestion.add(e);
 			}
 		});
-		listCuestion.forEach(exam::removeCuestion);
+		listCuestion.forEach(c-> examId.removeCuestion(c));
+		
 		examId.setCuestionList(exam.getCuestionList());
-		service.create(examId);
 		return ResponseEntity.ok(examId);
 	}
+	
+//	@PutMapping("/{id}")
+//	public ResponseEntity<?> put(@RequestBody Exam exam, @PathVariable Long id) {
+//
+//		Exam examId;
+//		try {
+//			examId = service.findId(id);
+//		} catch (DataAccessException e) {
+//			e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage());
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error");
+//
+//		}
+//		if (examId == null) {
+//			 ResponseEntity.ok("No existen registros de examenes");
+//		}
+//		examId.setName(exam.getName());
+//		List<Cuestion> listCuestion = new ArrayList<Cuestion>();
+//		examId.getCuestionList().forEach(e -> {
+//			if (!exam.getCuestionList().contains(e)) {
+//				listCuestion.add(e);
+//			}
+//		});
+//		listCuestion.forEach(cuestion-> {
+//			service.removeCuestion(cuestion, examId);
+//		});
+//		
+//		examId.setCuestionList(exam.getCuestionList());
+//		return ResponseEntity.ok(examId);
+//	}
 	
 	
 	
